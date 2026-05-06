@@ -1,0 +1,142 @@
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* dark background */
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0; /* light text */
+}
+
+/* Page title */
+h1 {
+    text-align: center;
+    color: #f1f1f1;
+    margin: 20px 0;
+    font-size: 28px;
+}
+
+/* Card container - 5 cards in a row */
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* Card styles */
+.card {
+    background: #1e1e1e; /* dark card */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Company title */
+.card h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 6px;
+}
+
+/* Headlines list */
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card ul li {
+    margin-bottom: 8px;
+}
+
+/* Headline links */
+.card ul li a {
+    text-decoration: none;
+    color: #4aa3ff; /* bright link */
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.card ul li a:hover {
+    color: #1abc9c; /* teal on hover */
+}
+
+/* Published date */
+.published-date {
+    color: #aaa;        /* softer grey for dates */
+    font-size: 0.85em;
+    margin-left: 8px;
+}
+
+/* Footer info */
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    background-color: #1e1e1e;
+    color: #bbb;
+    margin-top: 30px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Summary page */
+.summary-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    color: #ddd;
+}
+
+.summary-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.summary-container ul {
+    list-style: disc;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.summary-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+.header-top {
+    display: flex;
+    justify-content: space-between; /* Pushes h2 left, search bar right */
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#searchBar {
+    padding: 8px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+p a {
+    color: #1E90FF;   /* light blue */
+    text-decoration: none;  /* optional: remove underline */
+}
+
+p a:hover {
+    color: #0d6efd;   /* darker blue on hover */
+    text-decoration: underline;  /* optional: show underline on hover */
+}

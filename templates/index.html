@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .published-date {
+            color: #888;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        /* 🔎 Search bar styles */
+        #searchBar {
+            padding: 8px;
+            margin: 10px 0;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p>
+            Showing {{ companies_count }} companies | 
+            {{ feeds_count }} feeds | 
+            Headlines per company: {{ min_headlines }}–{{ max_headlines }} | 
+            Updated: {{ now }} | 
+            Fetched in {{ elapsed_ms }} ms
+        </p>
+    </header>
+
+    <!-- 🌍 Country selection -->
+    <form method="get" action="/" style="text-align:center; margin-bottom: 20px;">
+        <label for="country">Select Country:</label>
+        <select name="country" id="country" onchange="this.form.submit()">
+            <option value="" {% if not selected_country %}selected{% endif %}>All</option>
+            <option value="us" {% if selected_country=='us' %}selected{% endif %}>USA</option>
+            <option value="in" {% if selected_country=='in' %}selected{% endif %}>India</option>
+            <option value="uk" {% if selected_country=='uk' %}selected{% endif %}>UK</option>
+            <option value="jp" {% if selected_country=='jp' %}selected{% endif %}>Japan</option>
+            <option value="de" {% if selected_country=='de' %}selected{% endif %}>Germany</option>
+            <option value="fr" {% if selected_country=='fr' %}selected{% endif %}>France</option>
+        </select>
+    </form>
+
+    <div class="header-top">
+        <h2>Companies</h2>
+        <!-- 🔎 Search bar for companies only -->
+        <input type="text" id="searchBar" placeholder="Search companies...">
+    </div>
+
+    <div class="container" id="companyContainer">
+        {% for company, headlines in company_news.items() %}
+        <div class="card company-card">
+            <h2 class="company-name">{{ company }}</h2>
+            <ul>
+                {% for headline in headlines %}
+                <li>
+                    <a href="{{ url_for('summary', url=headline.link, t=company) }}" target="_blank">
+                        {{ headline.title }}
+                    </a>
+                    <span class="published-date">{{ headline.published }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ✅ JavaScript for live search -->
+    <script>
+        document.getElementById("searchBar").addEventListener("keyup", function() {
+            let input = this.value.toLowerCase();
+            let cards = document.querySelectorAll(".company-card");
+
+            cards.forEach(card => {
+                let companyName = card.querySelector(".company-name").textContent.toLowerCase();
+                if (companyName.includes(input)) {
+                    card.style.display = "block"; // show
+                } else {
+                    card.style.display = "none"; // hide
+                }
+            });
+        });
+    </script>
+</body>
+</html>
